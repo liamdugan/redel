@@ -26,6 +26,7 @@ $ playwright install chrome
 $ cd kanpai-viz
 $ npm i
 $ npm run build
+$ cd ..
 # run
 $ python server.py
 ```
