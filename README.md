@@ -13,6 +13,11 @@ kan-pi uses the kani framework under the hood (kani + raspberry pi = kanpai :bee
 
 Requires Python 3.10+
 
+Required environment variables:
+
+- `OPENAI_API_KEY`
+- `ANTHROPIC_API_KEY`
+
 ```shell
 # install python dependencies
 $ pip install -r requirements.txt
@@ -22,7 +27,7 @@ $ cd kanpai-viz
 $ npm i
 $ npm run build
 # run
-$ OPENAI_API_KEY="..." python server.py
+$ python server.py
 ```
 
 ## Core Loop
