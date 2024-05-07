@@ -76,8 +76,9 @@ class BaseKani(Kani):
         try:
             yield
         finally:
-            self.state = old_state
-            self.app.dispatch(events.KaniStateChange(id=self.id, state=self.state))
+            if self.state != RunState.ERRORED:
+                self.state = old_state
+                self.app.dispatch(events.KaniStateChange(id=self.id, state=self.state))
 
     def get_save_state(self) -> KaniState:
         """Get a Pydantic state suitable for saving/loading."""

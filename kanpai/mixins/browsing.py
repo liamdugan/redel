@@ -5,7 +5,9 @@ from typing import Optional, TYPE_CHECKING
 from kani import ChatMessage, ai_function
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 
+from kanpai import events
 from kanpai.base_kani import BaseKani
+from kanpai.state import RunState
 from kanpai.webutils import get_google_links, web_markdownify, web_summarize
 
 if TYPE_CHECKING:
@@ -86,3 +88,10 @@ class BrowsingMixin(BaseKani):
             )
         result = header + content
         return result
+
+    @ai_function()
+    async def blocked(self):
+        """Call this function if a page visit was blocked by the page."""
+        self.state = RunState.ERRORED
+        self.app.dispatch(events.KaniStateChange(id=self.id, state=self.state))
+        return "The block has been noted. Don't use this site for future queries."
