@@ -94,4 +94,4 @@ class BrowsingMixin(BaseKani):
         """Call this function if a page visit was blocked by the page."""
         self.state = RunState.ERRORED
         self.app.dispatch(events.KaniStateChange(id=self.id, state=self.state))
-        return "The block has been noted. Don't use this site for future queries."
+        return "The block has been noted. Don't use this site for future queries and do not retry."
